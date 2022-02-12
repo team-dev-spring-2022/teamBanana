@@ -1,3 +1,9 @@
+# Описание проекта
+
+"BananaTask" - приложение-планировщик для организации списка дел и управления задачами.
+Проект создан в рамках прохождения курса "Инфраструктура коллективной разработки ПО".
+Дизайн проекта по [ссылке](https://www.figma.com/file/PSJvBEPL4vUfNZIgB4kHEi/teamBanana?node-id=0%3A1).
+
 # delme
 
 This is a template repo with initial React Native project and configured GitHub Actions.
