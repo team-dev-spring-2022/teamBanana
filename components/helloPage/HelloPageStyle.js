@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  // @todo #4 Добавить стили для страницы профиля
+  // @todo #4 Добавить стили для начальной страницы
   container: {},
 
   logo: {},
