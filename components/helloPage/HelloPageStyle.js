@@ -1,18 +1,41 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  // @todo #4 Добавить стили для начальной страницы
-  container: {},
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 
-  logo: {},
+  logo: {
+    width: 300,
+    height: 300,
+    marginBottom: 20,
+    resizeMode: 'contain',
+  },
 
-  text: {},
+  text: {
+    fontSize: 16,
+    color: '#FFFFFF',
+  },
 
-  button: {},
+  button: {
+    width: 205,
+    height: 48,
+    padding: 10,
+    marginBottom: 25,
+    alignItems: 'center',
+    borderRadius: 24,
+    borderWidth: 0.5,
+    borderColor: 'black',
+  },
 
-  signInButton: {},
+  signInButton: {
+    backgroundColor: '#FFD511',
+  },
 
-  signUpButton: {},
+  signUpButton: {
+    backgroundColor: '#C4C4C4',
+  },
 });
 
 export default styles;
