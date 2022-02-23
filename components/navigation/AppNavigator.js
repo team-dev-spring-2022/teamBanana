@@ -1,12 +1,28 @@
 import React from 'react';
-import {Image, TouchableOpacity, View, Text} from 'react-native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import HelloPage from '../helloPage/HelloPage';
+import SignInPage from '../signInPage/SignInPage';
+import SignUpPage from '../signUpPage/SignUpPage';
+import ToDoListPage from '../toDoListPage/ToDoListPage';
+
+const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
-  // @todo #20 Добавить элементы для страницы навигации.
   return (
-    <View>
-      <Text>Navigator</Text>
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="HelloPage"
+        component={HelloPage}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen name="SignIn" component={SignInPage} />
+      <Stack.Screen name="SignUp" component={SignUpPage} />
+      <Stack.Screen
+        name="ToDoList"
+        component={ToDoListPage}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
   );
 };
 
