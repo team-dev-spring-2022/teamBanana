@@ -5,6 +5,8 @@ import SignInPage from '../signInPage/SignInPage';
 import SignUpPage from '../signUpPage/SignUpPage';
 import ToDoListPage from '../toDoListPage/ToDoListPage';
 
+import navOptions from './AppNavigatorStyle';
+
 const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
@@ -13,14 +15,22 @@ const Navigator = () => {
       <Stack.Screen
         name="HelloPage"
         component={HelloPage}
-        options={{headerShown: false}}
+        options={navOptions.helloPageHeader}
       />
-      <Stack.Screen name="SignIn" component={SignInPage} />
-      <Stack.Screen name="SignUp" component={SignUpPage} />
+      <Stack.Screen
+        name="SignIn"
+        options={navOptions.signInHeader}
+        component={SignInPage}
+      />
+      <Stack.Screen
+        name="SignUp"
+        options={navOptions.signUpHeader}
+        component={SignUpPage}
+      />
       <Stack.Screen
         name="ToDoList"
         component={ToDoListPage}
-        options={{headerShown: false}}
+        options={navOptions.toDoListHeader}
       />
     </Stack.Navigator>
   );

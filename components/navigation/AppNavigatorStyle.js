@@ -1,7 +1,25 @@
-import {StyleSheet} from 'react-native';
+const navOptions = {
+  helloPageHeader: {
+    headerShown: false,
+  },
 
-const styles = StyleSheet.create({
-  // @todo #20 Добавить стили для страницы навигации.
-});
+  signInHeader: {
+    title: 'Войти',
+    headerTintColor: '#ffffff',
+    headerStyle: {backgroundColor: '#FFD511'},
+    headerTitleStyle: {color: 'white'},
+  },
 
-export default styles;
+  signUpHeader: {
+    title: 'Зарегистрироваться',
+    headerTintColor: '#ffffff',
+    headerStyle: {backgroundColor: '#FFD511'},
+    headerTitleStyle: {color: 'white'},
+  },
+
+  toDoListHeader: {
+    headerShown: false,
+  },
+};
+
+export default navOptions;
