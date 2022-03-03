@@ -29,7 +29,9 @@ const SignInPage = ({navigation}) => {
         <Text style={styles.text}>Войти</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.signUpButton, styles.button]}>
+      <TouchableOpacity
+        style={[styles.signUpButton, styles.button]}
+        onPress={() => navigation.navigate('RecoveryPage')}>
         <Text style={styles.textSignUp}>Забыли пароль?</Text>
       </TouchableOpacity>
     </View>
