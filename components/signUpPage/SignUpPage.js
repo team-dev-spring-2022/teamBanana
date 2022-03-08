@@ -29,7 +29,7 @@ const SignUpPage = () => {
           onChangeText={onChangePassword}
           value={password}
           placeholder="Пароль"
-          style={[styles.inputText_2, styles.text]}
+          style={[styles.inputText, styles.text]}
         />
 
         <TextInput
