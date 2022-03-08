@@ -20,6 +20,12 @@ const navOptions = {
   toDoListHeader: {
     headerShown: false,
   },
+  recoveryHeader: {
+    title: 'Восстановить пароль',
+    headerTintColor: '#ffffff',
+    headerStyle: {backgroundColor: '#FFD511'},
+    headerTitleStyle: {color: 'white'},
+  },
 };
 
 export default navOptions;
