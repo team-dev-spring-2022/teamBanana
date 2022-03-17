@@ -2,7 +2,10 @@
 
 "BananaTask" - приложение-планировщик для организации списка дел и управления задачами.
 Проект создан в рамках прохождения курса "Инфраструктура коллективной разработки ПО".
-Дизайн проекта по [ссылке](https://www.figma.com/file/PSJvBEPL4vUfNZIgB4kHEi/teamBanana?node-id=0%3A1).
+
+Дизайн-проект приложения на [Figma](https://www.figma.com/file/PSJvBEPL4vUfNZIgB4kHEi/teamBanana?node-id=0%3A1).
+
+Серверная часть приложения в [репозитории](https://github.com/Arkaides/TeamBananaServer).
 
 # Инструкция по запуску проекта
 
