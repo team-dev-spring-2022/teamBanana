@@ -19,7 +19,7 @@ const RecoveryPage = () => {
         <TextInput
           onChangeText={onChangePassword}
           value={password}
-          placeholder="Пароль"
+          placeholder="Новый пароль"
           style={[styles.inputText, styles.text]}
         />
 
