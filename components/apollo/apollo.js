@@ -1,10 +1,10 @@
 import {ApolloClient, InMemoryCache, HttpLink} from '@apollo/client';
 import {onError} from '@apollo/client/link/error';
 import {setContext} from '@apollo/client/link/context';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+//import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const httpLink = new HttpLink({
-  uri: 'https://nefu-server.herokuapp.com/',
+  uri: 'https://bananatask-server.herokuapp.com/',
   credentials: 'same-origin',
   headers: {
     Accept: 'application/json',
@@ -17,7 +17,7 @@ const authLink = setContext(async (_, {headers}) => {
   return {
     headers: {
       ...headers,
-      authorization: (await AsyncStorage.getItem('token')) || null,
+      authorization: null,
     },
   };
 });
