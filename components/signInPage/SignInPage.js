@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, TextInput, View, Text} from 'react-native';
 import styles from './SignInPageStyle';
+import {useMutation} from '@apollo/client';
+import {AUTH} from '../apollo/gqls/mutations';
 
 const SignInPage = ({navigation}) => {
   const [login, onChangeLogin] = useState(null);
