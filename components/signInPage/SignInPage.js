@@ -8,6 +8,25 @@ const SignInPage = ({navigation}) => {
   const [login, onChangeLogin] = useState(null);
   const [password, onChangePassword] = useState(null);
 
+  const [authorization] = useMutation(AUTH, {
+    onCompleted: async ({loginInput}) => {
+      console.log('Authorization OK');
+      navigation.navigate('ToDoList');
+    },
+    onError: ({message}) => {
+      console.log(message);
+      if (message === 'Incorrect password') {
+        return null;
+      }
+    },
+  });
+
+  const onAuthorization = () => {
+    authorization({
+      variables: {email: login, password: password},
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -27,7 +46,7 @@ const SignInPage = ({navigation}) => {
       </View>
       <TouchableOpacity
         style={[styles.signInButton, styles.button]}
-        onPress={() => navigation.navigate('ToDoList')}>
+        onPress={onAuthorization}>
         <Text style={styles.text}>Войти</Text>
       </TouchableOpacity>
 
