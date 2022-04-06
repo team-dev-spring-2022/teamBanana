@@ -9,8 +9,9 @@ const SignInPage = ({navigation}) => {
   const [password, onChangePassword] = useState(null);
 
   const [authorization] = useMutation(AUTH, {
-    onCompleted: async ({loginInput}) => {
+    onCompleted: async ({loginUser}) => {
       console.log('Authorization OK');
+      console.log(loginUser._id);
       navigation.navigate('ToDoList');
     },
     onError: ({message}) => {
