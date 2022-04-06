@@ -1,12 +1,30 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, TextInput, View, Text} from 'react-native';
 import styles from './SignUpPageStyle';
+import {useMutation} from '@apollo/client';
+import {REG} from '../apollo/gqls/mutations';
 
 const SignUpPage = () => {
   const [login, onChangeLogin] = useState(null);
   const [email, onChangeEmail] = useState(null);
   const [password, onChangePassword] = useState(null);
   const [checkpassword, onChangeCheckPassword] = useState(null);
+
+  const [registration] = useMutation(REG, {
+    onCompleted: () => {
+      console.log('registration OK');
+    },
+  });
+
+  const onRegistration = () => {
+    registration({
+      variables: {
+        username: login,
+        email: email,
+        password: password,
+      },
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -18,28 +36,11 @@ const SignUpPage = () => {
           style={[styles.inputText, styles.text]}
         />
 
-        <TextInput
-          onChangeText={onChangeEmail}
-          value={email}
-          placeholder="Email"
-          style={[styles.inputText, styles.text]}
-        />
-
-        <TextInput
-          onChangeText={onChangePassword}
-          value={password}
-          placeholder="Пароль"
-          style={[styles.inputText, styles.text]}
-        />
-
-        <TextInput
-          onChangeText={onChangeCheckPassword}
-          value={checkpassword}
-          placeholder="Повторите пароль"
-          style={[styles.inputText, styles.text]}
-        />
-      </View>
-      <TouchableOpacity style={[styles.signUpButton, styles.button]}>
+       ...
+	   
+      <TouchableOpacity
+        style={[styles.signUpButton, styles.button]}
+        onPress={onRegistration}>
         <Text style={styles.text}>Зарегистрироваться</Text>
       </TouchableOpacity>
     </View>

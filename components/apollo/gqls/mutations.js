@@ -15,6 +15,7 @@ export const REG = gql`
     registerUser(
       registerInput: {username: $username, email: $email, password: $password}
     ) {
+      _id
       username
       email
       token
