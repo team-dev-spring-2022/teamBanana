@@ -36,8 +36,28 @@ const SignUpPage = () => {
           style={[styles.inputText, styles.text]}
         />
 
-       ...
-	   
+        <TextInput
+          onChangeText={onChangeEmail}
+          value={email}
+          placeholder="Email"
+          style={[styles.inputText, styles.text]}
+        />
+
+        <TextInput
+          onChangeText={onChangePassword}
+          value={password}
+          placeholder="Пароль"
+          style={[styles.inputText, styles.text]}
+        />
+
+        <TextInput
+          onChangeText={onChangeCheckPassword}
+          value={checkpassword}
+          placeholder="Повторите пароль"
+          style={[styles.inputText, styles.text]}
+        />
+      </View>
+
       <TouchableOpacity
         style={[styles.signUpButton, styles.button]}
         onPress={onRegistration}>
