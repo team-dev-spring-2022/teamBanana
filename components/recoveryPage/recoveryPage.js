@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, TextInput, View, Text} from 'react-native';
-import styles from '../signUpPage/SignUpPageStyle';
+import styles from './recoveryPageStyle';
 
 const RecoveryPage = () => {
   const [email, onChangeEmail] = useState(null);

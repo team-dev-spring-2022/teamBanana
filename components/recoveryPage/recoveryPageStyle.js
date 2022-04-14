@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 18,
-    color: '#FFFFFF',
+    color: '#000000',
   },
 
   signUpButton: {
