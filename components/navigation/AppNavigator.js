@@ -5,6 +5,7 @@ import SignInPage from '../signInPage/SignInPage';
 import SignUpPage from '../signUpPage/SignUpPage';
 import ToDoListPage from '../toDoListPage/ToDoListPage';
 import RecoveryPage from '../recoveryPage/recoveryPage';
+import CreateTasksPage from '../createTasksPage/CreateTasksPage';
 
 import navOptions from './AppNavigatorStyle';
 
@@ -37,6 +38,11 @@ const Navigator = () => {
         name="RecoveryPage"
         component={RecoveryPage}
         options={navOptions.recoveryHeader}
+      />
+      <Stack.Screen
+        name="CreateTasksPage"
+        component={CreateTasksPage}
+        options={navOptions.createTaskHeader}
       />
     </Stack.Navigator>
   );

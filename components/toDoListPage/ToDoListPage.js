@@ -1,9 +1,9 @@
 import React from 'react';
-import {ScrollView, View, Text} from 'react-native';
+import {ScrollView, View, Text, TouchableOpacity} from 'react-native';
 import {FIND_MANY_POST} from '../apollo/gqls/queries';
 import {useQuery} from '@apollo/client';
 
-const ToDoListPage = () => {
+const ToDoListPage = ({navigation}) => {
   const {data} = useQuery(FIND_MANY_POST, {
     variables: {
       variables: {createdBy: 'z1'},
@@ -27,6 +27,11 @@ const ToDoListPage = () => {
         ) : (
           <Text />
         )}
+        <TouchableOpacity
+          style={{backgroundColor: '#FFD511'}}
+          onPress={() => navigation.navigate('CreateTasksPage')}>
+          <Text>Добавить</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );

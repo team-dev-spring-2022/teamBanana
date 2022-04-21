@@ -26,6 +26,13 @@ const navOptions = {
     headerStyle: {backgroundColor: '#FFD511'},
     headerTitleStyle: {color: 'white'},
   },
+
+  createTaskHeader: {
+    title: 'Добавить задачу',
+    headerTintColor: '#ffffff',
+    headerStyle: {backgroundColor: '#FFD511'},
+    headerTitleStyle: {color: 'white'},
+  },
 };
 
 export default navOptions;
