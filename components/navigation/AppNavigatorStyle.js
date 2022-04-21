@@ -33,6 +33,12 @@ const navOptions = {
     headerStyle: {backgroundColor: '#FFD511'},
     headerTitleStyle: {color: 'white'},
   },
+  changeTaskHeader: {
+    title: 'Редактировать задачу',
+    headerTintColor: '#ffffff',
+    headerStyle: {backgroundColor: '#FFD511'},
+    headerTitleStyle: {color: 'white'},
+  },
 };
 
 export default navOptions;
