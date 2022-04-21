@@ -23,3 +23,27 @@ export const REG = gql`
     }
   }
 `;
+
+export const ADD_TASK = gql`
+  mutation CreateTask(
+    $text: String
+    $createdBy: String
+    $checked: Boolean
+    $deadline: String
+  ) {
+    createTask(
+      taskInput: {
+        text: $text
+        createdBy: $createdBy
+        checked: $checked
+        deadline: $deadline
+      }
+    ) {
+      _id
+      text
+      createdBy
+      checked
+      deadline
+    }
+  }
+`;
