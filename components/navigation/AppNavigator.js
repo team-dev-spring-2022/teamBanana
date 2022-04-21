@@ -6,6 +6,7 @@ import SignUpPage from '../signUpPage/SignUpPage';
 import ToDoListPage from '../toDoListPage/ToDoListPage';
 import RecoveryPage from '../recoveryPage/recoveryPage';
 import CreateTasksPage from '../createTasksPage/CreateTasksPage';
+import ChangeTaskPage from '../changeTaskPage/ChangeTaskPage';
 
 import navOptions from './AppNavigatorStyle';
 
@@ -43,6 +44,11 @@ const Navigator = () => {
         name="CreateTasksPage"
         component={CreateTasksPage}
         options={navOptions.createTaskHeader}
+      />
+      <Stack.Screen
+        name="ChangeTaskPage"
+        component={ChangeTaskPage}
+        options={navOptions.changeTaskHeader}
       />
     </Stack.Navigator>
   );

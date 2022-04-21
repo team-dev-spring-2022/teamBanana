@@ -32,6 +32,11 @@ const ToDoListPage = ({navigation}) => {
           onPress={() => navigation.navigate('CreateTasksPage')}>
           <Text>Добавить</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={{backgroundColor: '#FFD511'}}
+          onPress={() => navigation.navigate('ChangeTaskPage')}>
+          <Text>Редактировать</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
