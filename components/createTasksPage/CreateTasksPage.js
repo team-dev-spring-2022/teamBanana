@@ -49,4 +49,3 @@ const CreateTasksPage = ({navigation}) => {
 };
 
 export default CreateTasksPage;
-
