@@ -25,20 +25,20 @@ export const REG = gql`
 `;
 
 export const ADD_TASK = gql`
-  mutation CreateTask(
-    $text: String
-    $createdBy: String
-    $checked: Boolean
-    $deadline: String
-  ) {
-    createTask(
-      taskInput: {
-        text: $text
-        createdBy: $createdBy
-        checked: $checked
-        deadline: $deadline
-      }
-    ) {
+  mutation CreateTask2($task: TaskInput) {
+    createTask(taskInput: $task) {
+      _id
+      text
+      createdBy
+      checked
+      deadline
+    }
+  }
+`;
+
+export const UPD_TASK = gql`
+  mutation UpdateTask($id: ID!, $task: TaskInput) {
+    updateTask(id: $id, taskInput: $task) {
       _id
       text
       createdBy
