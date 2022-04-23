@@ -6,12 +6,12 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import styles from './CreateTasksPageStyle';
+import styles from './ChangeTasksPageStyle';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import 'moment/locale/ru';
 
-const CreateTasksPage = ({navigation}) => {
+const ChangeTaskPage = ({navigation}) => {
   const [text, onChangeText] = useState(null);
   const [date, setDate] = useState(new Date());
 
