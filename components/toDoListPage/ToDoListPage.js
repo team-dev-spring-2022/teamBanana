@@ -39,7 +39,14 @@ const ToDoListPage = ({navigation, route}) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.taskContainer}
-                  onPress={() => navigation.navigate('ChangeTaskPage')}>
+                  onPress={() =>
+                    navigation.navigate('ChangeTaskPage', {
+                      id: item._id,
+                      text: item.text,
+                      deadlineText: item.deadline,
+                      email: item.createdBy,
+                    })
+                  }>
                   <Text style={styles.taskText}>{item.text}</Text>
                   <Text style={styles.deadlineText}>
                     {moment(item.deadline).format('DD-MM-YYYY, dddd')}
