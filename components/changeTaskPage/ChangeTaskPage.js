@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {
   View,
@@ -23,7 +24,7 @@ const ChangeTaskPage = ({navigation, route}) => {
   useEffect(() => {
     const setData = () => {
       setId(route.params.id);
-      setChecked(false);
+      setChecked(route.params.checked);
       setEmail(route.params.email);
       onChangeText(route.params.text);
       setDate(route.params.deadline);
@@ -32,6 +33,7 @@ const ChangeTaskPage = ({navigation, route}) => {
   }, [
     route.params.id,
     route.params.text,
+    route.params.checked,
     route.params.deadline,
     route.params.email,
   ]);
@@ -107,6 +109,23 @@ const ChangeTaskPage = ({navigation, route}) => {
           value={text}
           placeholder="Введите текст"
         />
+        <View style={styles.dateInputContainer}>
+          <TouchableOpacity
+            style={styles.checkedContainer}
+            onPress={() => setChecked(!checked)}>
+            <View
+              style={[
+                styles.checkedButton,
+                checked
+                  ? {backgroundColor: '#61bd5c'}
+                  : {backgroundColor: '#f68379'},
+              ]}
+            />
+          </TouchableOpacity>
+          <Text style={[styles.dateText, styles.text]}>
+            Задача была выполнена?
+          </Text>
+        </View>
         <Text style={styles.text}>Срок</Text>
         <View style={styles.dateInputContainer}>
           <Text style={[styles.dateText, styles.text]}>
@@ -116,11 +135,7 @@ const ChangeTaskPage = ({navigation, route}) => {
             <Text>Дата</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.removeButton} onPress={removeTask}>
-            <Text>Удалить</Text>
-          </TouchableOpacity>
-        </View>
+        <View style={styles.buttonContainer} />
         <DateTimePickerModal
           isVisible={isDatePickerVisible}
           mode="date"
@@ -129,8 +144,11 @@ const ChangeTaskPage = ({navigation, route}) => {
         />
       </ScrollView>
       <View style={styles.addButtonContainer}>
-        <TouchableOpacity style={styles.addButton} onPress={updatedTask}>
-          <Text style={styles.addButtonText}>+</Text>
+        <TouchableOpacity style={styles.addremoveButton} onPress={removeTask}>
+          <Text style={styles.addButtonText}>Удалить</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.addremoveButton} onPress={updatedTask}>
+          <Text style={styles.addButtonText}>Изменить</Text>
         </TouchableOpacity>
       </View>
     </View>
