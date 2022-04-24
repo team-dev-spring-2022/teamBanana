@@ -11,7 +11,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import 'moment/locale/ru';
 import {useMutation} from '@apollo/client';
-import {UPD_TASK} from '../apollo/gqls/mutations';
+import {UPD_TASK, DEL_TASK} from '../apollo/gqls/mutations';
 
 const ChangeTaskPage = ({navigation, route}) => {
   const [text, onChangeText] = useState(null);
@@ -63,6 +63,18 @@ const ChangeTaskPage = ({navigation, route}) => {
     },
   });
 
+  const [remove] = useMutation(DEL_TASK, {
+    onCompleted: () => {
+      console.log('remove task');
+      navigation.navigate('ToDoList', {
+        email: email,
+      });
+    },
+    onError: ({message}) => {
+      console.log(message);
+    },
+  });
+
   const updatedTask = () => {
     update({
       variables: {
@@ -77,6 +89,14 @@ const ChangeTaskPage = ({navigation, route}) => {
     });
   };
 
+  const removeTask = () => {
+    remove({
+      variables: {
+        id: id,
+      },
+    });
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -87,7 +107,6 @@ const ChangeTaskPage = ({navigation, route}) => {
           value={text}
           placeholder="Введите текст"
         />
-
         <Text style={styles.text}>Срок</Text>
         <View style={styles.dateInputContainer}>
           <Text style={[styles.dateText, styles.text]}>
@@ -97,7 +116,11 @@ const ChangeTaskPage = ({navigation, route}) => {
             <Text>Дата</Text>
           </TouchableOpacity>
         </View>
-
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.removeButton} onPress={removeTask}>
+            <Text>Удалить</Text>
+          </TouchableOpacity>
+        </View>
         <DateTimePickerModal
           isVisible={isDatePickerVisible}
           mode="date"
