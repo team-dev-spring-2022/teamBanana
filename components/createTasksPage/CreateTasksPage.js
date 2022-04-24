@@ -10,6 +10,8 @@ import styles from './CreateTasksPageStyle';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import 'moment/locale/ru';
+import {useMutation} from '@apollo/client';
+import {ADD_TASK} from '../apollo/gqls/mutations';
 
 const CreateTasksPage = ({navigation}) => {
   const [text, onChangeText] = useState(null);
@@ -30,6 +32,29 @@ const CreateTasksPage = ({navigation}) => {
     hideDatePicker();
   };
 
+  const [created] = useMutation(ADD_TASK, {
+    onCompleted: () => {
+      console.log('add task');
+      navigation.navigate('ToDoList');
+    },
+    onError: ({message}) => {
+      console.log(message);
+    },
+  });
+
+  const createdTask = () => {
+    created({
+      variables: {
+        task: {
+          text: text,
+          createdBy: 'z1',
+          checked: false,
+          deadline: date,
+        },
+      },
+    });
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -44,7 +69,7 @@ const CreateTasksPage = ({navigation}) => {
         <Text style={styles.text}>Срок</Text>
         <View style={styles.dateInputContainer}>
           <Text style={[styles.dateText, styles.text]}>
-            {moment(date.toString()).format('dddd, D MMMM YYYY г.')}
+            {moment(date.toISOString()).format('dddd, D MMMM YYYY г.')}
           </Text>
           <TouchableOpacity style={styles.dateButton} onPress={showDatePicker}>
             <Text>Дата</Text>
@@ -59,9 +84,7 @@ const CreateTasksPage = ({navigation}) => {
         />
       </ScrollView>
       <View style={styles.addButtonContainer}>
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => navigation.navigate('ToDoList')}>
+        <TouchableOpacity style={styles.addButton} onPress={createdTask}>
           <Text style={styles.addButtonText}>+</Text>
         </TouchableOpacity>
       </View>
