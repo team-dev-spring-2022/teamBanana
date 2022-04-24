@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -10,10 +10,31 @@ import styles from './ChangeTaskPageStyle';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import 'moment/locale/ru';
+import {useMutation} from '@apollo/client';
+import {UPD_TASK} from '../apollo/gqls/mutations';
 
-const ChangeTaskPage = ({navigation}) => {
+const ChangeTaskPage = ({navigation, route}) => {
   const [text, onChangeText] = useState(null);
+  const [id, setId] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [checked, setChecked] = useState(false);
   const [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    const setData = () => {
+      setId(route.params.id);
+      setChecked(false);
+      setEmail(route.params.email);
+      onChangeText(route.params.text);
+      setDate(route.params.deadline);
+    };
+    setData();
+  }, [
+    route.params.id,
+    route.params.text,
+    route.params.deadline,
+    route.params.email,
+  ]);
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
@@ -26,8 +47,34 @@ const ChangeTaskPage = ({navigation}) => {
   };
 
   const handleConfirm = selected => {
-    setDate(selected);
+    setDate(selected.toISOString());
     hideDatePicker();
+  };
+
+  const [update] = useMutation(UPD_TASK, {
+    onCompleted: () => {
+      console.log('add task');
+      navigation.navigate('ToDoList', {
+        email: email,
+      });
+    },
+    onError: ({message}) => {
+      console.log(message);
+    },
+  });
+
+  const updatedTask = () => {
+    update({
+      variables: {
+        id: id,
+        task: {
+          text: text,
+          createdBy: email,
+          checked: checked,
+          deadline: date,
+        },
+      },
+    });
   };
 
   return (
@@ -44,7 +91,7 @@ const ChangeTaskPage = ({navigation}) => {
         <Text style={styles.text}>Срок</Text>
         <View style={styles.dateInputContainer}>
           <Text style={[styles.dateText, styles.text]}>
-            {moment(date.toString()).format('dddd, D MMMM YYYY г.')}
+            {moment(date).format('dddd, D MMMM YYYY г.')}
           </Text>
           <TouchableOpacity style={styles.dateButton} onPress={showDatePicker}>
             <Text>Дата</Text>
@@ -59,9 +106,7 @@ const ChangeTaskPage = ({navigation}) => {
         />
       </ScrollView>
       <View style={styles.addButtonContainer}>
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => navigation.navigate('ToDoList')}>
+        <TouchableOpacity style={styles.addButton} onPress={updatedTask}>
           <Text style={styles.addButtonText}>+</Text>
         </TouchableOpacity>
       </View>
