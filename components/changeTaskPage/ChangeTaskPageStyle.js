@@ -7,6 +7,22 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 
+  checkedContainer: {
+    backgroundColor: '#FFD511',
+    width: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+  },
+
+  checkedButton: {
+    width: 22,
+    height: 22,
+    borderWidth: 3,
+    borderColor: 'rgba(0,0,0,0.5)',
+    borderRadius: 5,
+  },
+
   buttonContainer: {
     marginVertical: 40,
     alignItems: 'center',
@@ -48,28 +64,19 @@ const styles = StyleSheet.create({
   },
 
   addButtonContainer: {
+    flex: 1,
+    flexDirection: 'row',
     padding: 5,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
-  addButton: {
-    borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.2)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 60,
-    height: 60,
-    backgroundColor: '#FFD511',
-    borderRadius: 30,
-  },
-
   addButtonText: {
-    fontSize: 36,
+    fontSize: 20,
     color: '#000',
   },
 
-  removeButton: {
+  addremoveButton: {
     width: 180,
     height: 48,
     padding: 10,

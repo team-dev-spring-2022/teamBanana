@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {ScrollView, View, Text, TouchableOpacity} from 'react-native';
 import {FIND_MANY_POST} from '../apollo/gqls/queries';
@@ -35,7 +36,14 @@ const ToDoListPage = ({navigation, route}) => {
                 <TouchableOpacity
                   style={styles.checkedContainer}
                   onPress={() => navigation.navigate('CreateTasksPage')}>
-                  <View style={styles.checkedButton} />
+                  <View
+                    style={[
+                      styles.checkedButton,
+                      item.checked
+                        ? {backgroundColor: '#61bd5c'}
+                        : {backgroundColor: '#f68379'},
+                    ]}
+                  />
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.taskContainer}
@@ -43,6 +51,7 @@ const ToDoListPage = ({navigation, route}) => {
                     navigation.navigate('ChangeTaskPage', {
                       id: item._id,
                       text: item.text,
+                      checked: item.checked,
                       deadlineText: item.deadline,
                       email: item.createdBy,
                     })

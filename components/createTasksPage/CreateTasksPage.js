@@ -14,12 +14,12 @@ import {useMutation} from '@apollo/client';
 import {ADD_TASK} from '../apollo/gqls/mutations';
 
 const CreateTasksPage = ({navigation, route}) => {
-  const [text, onChangeText] = useState(null);
+  const [text, onChangeText] = useState('');
   const [date, setDate] = useState(new Date());
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
-  const [email, setEmail] = useState(null);
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     const setData = () => {
@@ -54,16 +54,18 @@ const CreateTasksPage = ({navigation, route}) => {
   });
 
   const createdTask = () => {
-    created({
-      variables: {
-        task: {
-          text: text,
-          createdBy: email,
-          checked: false,
-          deadline: date,
+    if (text !== '') {
+      created({
+        variables: {
+          task: {
+            text: text,
+            createdBy: email,
+            checked: false,
+            deadline: date,
+          },
         },
-      },
-    });
+      });
+    }
   };
 
   return (
@@ -96,7 +98,7 @@ const CreateTasksPage = ({navigation, route}) => {
       </ScrollView>
       <View style={styles.addButtonContainer}>
         <TouchableOpacity style={styles.addButton} onPress={createdTask}>
-          <Text style={styles.addButtonText}>+</Text>
+          <Text style={styles.addButtonText}>Добавить</Text>
         </TouchableOpacity>
       </View>
     </View>
