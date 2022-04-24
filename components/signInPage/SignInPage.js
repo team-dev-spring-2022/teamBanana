@@ -3,6 +3,7 @@ import {TouchableOpacity, TextInput, View, Text} from 'react-native';
 import styles from './SignInPageStyle';
 import {useMutation} from '@apollo/client';
 import {AUTH} from '../apollo/gqls/mutations';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignInPage = ({navigation}) => {
   const [login, onChangeLogin] = useState(null);
@@ -11,8 +12,12 @@ const SignInPage = ({navigation}) => {
   const [authorization] = useMutation(AUTH, {
     onCompleted: async ({loginUser}) => {
       console.log('Authorization OK');
-      console.log(loginUser._id);
-      navigation.navigate('ToDoList');
+      await AsyncStorage.setItem('email', loginUser.email);
+      await AsyncStorage.setItem('token', loginUser.token);
+
+      navigation.navigate('ToDoList', {
+        email: loginUser.email,
+      });
     },
     onError: ({message}) => {
       console.log(message);

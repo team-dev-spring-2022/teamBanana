@@ -1,8 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Image, TouchableOpacity, View, Text} from 'react-native';
 import style from './HelloPageStyle';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HelloPage = ({navigation}) => {
+  const [email, setEmail] = useState('null');
+  const [token, setToken] = useState('null');
+
+  useEffect(() => {
+    const dataFromStore = async () => {
+      setEmail((await AsyncStorage.getItem('email')) || 'null');
+      setToken((await AsyncStorage.getItem('token')) || 'null');
+    };
+    dataFromStore();
+  }, []);
+
   return (
     <View style={style.container}>
       <Image source={require('./logo.png')} style={style.logo} />
