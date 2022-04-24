@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -13,11 +13,20 @@ import 'moment/locale/ru';
 import {useMutation} from '@apollo/client';
 import {ADD_TASK} from '../apollo/gqls/mutations';
 
-const CreateTasksPage = ({navigation}) => {
+const CreateTasksPage = ({navigation, route}) => {
   const [text, onChangeText] = useState(null);
   const [date, setDate] = useState(new Date());
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const [email, setEmail] = useState(null);
+
+  useEffect(() => {
+    const setData = () => {
+      setEmail(route.params.email);
+    };
+    setData();
+  }, [route.params.email]);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -35,7 +44,9 @@ const CreateTasksPage = ({navigation}) => {
   const [created] = useMutation(ADD_TASK, {
     onCompleted: () => {
       console.log('add task');
-      navigation.navigate('ToDoList');
+      navigation.navigate('ToDoList', {
+        email: email,
+      });
     },
     onError: ({message}) => {
       console.log(message);
@@ -47,7 +58,7 @@ const CreateTasksPage = ({navigation}) => {
       variables: {
         task: {
           text: text,
-          createdBy: 'z1',
+          createdBy: email,
           checked: false,
           deadline: date,
         },

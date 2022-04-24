@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {ScrollView, View, Text, TouchableOpacity} from 'react-native';
 import {FIND_MANY_POST} from '../apollo/gqls/queries';
 import {useQuery} from '@apollo/client';
@@ -6,11 +6,21 @@ import styles from './ToDoListPageStyle';
 import moment from 'moment';
 import 'moment/locale/ru';
 
-const ToDoListPage = ({navigation}) => {
+const ToDoListPage = ({navigation, route}) => {
   moment.locale('ru');
+
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const setData = () => {
+      setEmail(route.params.email);
+    };
+    setData();
+  }, [route]);
+
   const {data} = useQuery(FIND_MANY_POST, {
     variables: {
-      variables: {createdBy: 'z1'},
+      where: {createdBy: email},
     },
     pollInterval: 500,
   });
@@ -46,7 +56,11 @@ const ToDoListPage = ({navigation}) => {
       <View style={styles.addButtonContainer}>
         <TouchableOpacity
           style={styles.addButton}
-          onPress={() => navigation.navigate('CreateTasksPage')}>
+          onPress={() =>
+            navigation.navigate('CreateTasksPage', {
+              email: email,
+            })
+          }>
           <Text style={styles.addButtonText}>+</Text>
         </TouchableOpacity>
       </View>

@@ -5,7 +5,7 @@ import styles from './SignUpPageStyle';
 import {useMutation} from '@apollo/client';
 import {REG} from '../apollo/gqls/mutations';
 
-const SignUpPage = () => {
+const SignUpPage = ({navigation}) => {
   const [login, onChangeLogin] = useState(null);
   const [email, onChangeEmail] = useState(null);
   const [password, onChangePassword] = useState('');
@@ -14,6 +14,7 @@ const SignUpPage = () => {
 
   const [registration] = useMutation(REG, {
     onCompleted: () => {
+      navigation.navigate('HelloPage');
       console.log('registration OK');
     },
   });
