@@ -7,6 +7,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 
+  buttonContainer: {
+    marginVertical: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
   dateInputContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -61,6 +67,18 @@ const styles = StyleSheet.create({
   addButtonText: {
     fontSize: 36,
     color: '#000',
+  },
+
+  removeButton: {
+    width: 180,
+    height: 48,
+    padding: 10,
+    borderRadius: 24,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: 'black',
+    backgroundColor: '#FFD511',
   },
 });
 
