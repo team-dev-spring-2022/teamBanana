@@ -2,7 +2,8 @@
 import React, {useState, useEffect} from 'react';
 import {ScrollView, View, Text, TouchableOpacity} from 'react-native';
 import {FIND_MANY_POST} from '../apollo/gqls/queries';
-import {useQuery} from '@apollo/client';
+import {useQuery, useMutation} from '@apollo/client';
+import {UPD_TASK} from '../apollo/gqls/mutations';
 import styles from './ToDoListPageStyle';
 import moment from 'moment';
 import 'moment/locale/ru';
@@ -18,6 +19,29 @@ const ToDoListPage = ({navigation, route}) => {
     };
     setData();
   }, [route]);
+
+  const [update] = useMutation(UPD_TASK, {
+    onCompleted: () => {
+      console.log('add task');
+      navigation.navigate('ToDoList', {
+        email: email,
+      });
+    },
+    onError: ({message}) => {
+      console.log(message);
+    },
+  });
+
+  const updatedTask = (id, checked) => {
+    update({
+      variables: {
+        id: id,
+        task: {
+          checked: checked,
+        },
+      },
+    });
+  };
 
   const {data} = useQuery(FIND_MANY_POST, {
     variables: {
@@ -35,7 +59,7 @@ const ToDoListPage = ({navigation, route}) => {
               <View style={styles.сontainer} key={item._id}>
                 <TouchableOpacity
                   style={styles.checkedContainer}
-                  onPress={() => navigation.navigate('CreateTasksPage')}>
+                  onPress={() => updatedTask(item._id, !item.checked)}>
                   <View
                     style={[
                       styles.checkedButton,
