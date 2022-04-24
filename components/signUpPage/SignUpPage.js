@@ -7,10 +7,11 @@ import {REG} from '../apollo/gqls/mutations';
 
 const SignUpPage = ({navigation}) => {
   const [login, onChangeLogin] = useState(null);
-  const [email, onChangeEmail] = useState(null);
+  const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
   const [checkpassword, onChangeCheckPassword] = useState('');
-  const [passErr, onChangePassErr] = useState(false);
+  const [passErr, setPassErr] = useState(false);
+  const [emailErr, setEmailErr] = useState(false);
 
   const [registration] = useMutation(REG, {
     onCompleted: () => {
@@ -20,22 +21,28 @@ const SignUpPage = ({navigation}) => {
   });
 
   const validate = () => {
+    if (email === '') {
+      console.log('Не введен Email');
+      setEmailErr(true);
+      return false;
+    }
+    setEmailErr(false);
     if (password === '') {
       console.log('Не введен пароль');
-      onChangePassErr(true);
+      setPassErr(true);
       return false;
     }
     if (checkpassword === '') {
       console.log('Повторите пароль');
-      onChangePassErr(true);
+      setPassErr(true);
       return false;
     }
     if (password !== checkpassword) {
       console.log('Пароли не совпадают');
-      onChangePassErr(true);
+      setPassErr(true);
       return false;
     }
-    onChangePassErr(false);
+    setPassErr(false);
     return true;
   };
 
@@ -65,7 +72,11 @@ const SignUpPage = ({navigation}) => {
           onChangeText={onChangeEmail}
           value={email}
           placeholder="Email"
-          style={[styles.inputText, styles.text]}
+          style={[
+            styles.inputText,
+            styles.text,
+            emailErr ? {backgroundColor: '#f68379'} : undefined,
+          ]}
         />
 
         <TextInput

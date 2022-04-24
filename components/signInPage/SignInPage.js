@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {TouchableOpacity, TextInput, View, Text} from 'react-native';
 import styles from './SignInPageStyle';
@@ -6,8 +7,27 @@ import {AUTH} from '../apollo/gqls/mutations';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignInPage = ({navigation}) => {
-  const [login, onChangeLogin] = useState(null);
-  const [password, onChangePassword] = useState(null);
+  const [login, onChangeLogin] = useState('');
+  const [password, onChangePassword] = useState('');
+
+  const [passErr, setPassErr] = useState(false);
+  const [emailErr, setEmailErr] = useState(false);
+
+  const validate = () => {
+    if (login === '') {
+      console.log('Не введен Email');
+      setEmailErr(true);
+      return false;
+    }
+    setEmailErr(false);
+    if (password === '') {
+      console.log('Не введен пароль');
+      setPassErr(true);
+      return false;
+    }
+    setPassErr(false);
+    return true;
+  };
 
   const [authorization] = useMutation(AUTH, {
     onCompleted: async ({loginUser}) => {
@@ -28,9 +48,11 @@ const SignInPage = ({navigation}) => {
   });
 
   const onAuthorization = () => {
-    authorization({
-      variables: {email: login, password: password},
-    });
+    if (validate()) {
+      authorization({
+        variables: {email: login, password: password},
+      });
+    }
   };
 
   return (
@@ -40,14 +62,22 @@ const SignInPage = ({navigation}) => {
           onChangeText={onChangeLogin}
           value={login}
           placeholder="Email"
-          style={[styles.inputText, styles.text]}
+          style={[
+            styles.inputText,
+            styles.text,
+            emailErr ? {backgroundColor: '#f68379'} : undefined,
+          ]}
         />
 
         <TextInput
           onChangeText={onChangePassword}
           value={password}
           placeholder="Пароль"
-          style={[styles.inputText, styles.text]}
+          style={[
+            styles.inputText,
+            styles.text,
+            passErr ? {backgroundColor: '#f68379'} : undefined,
+          ]}
         />
       </View>
       <TouchableOpacity
