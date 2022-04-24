@@ -47,3 +47,15 @@ export const UPD_TASK = gql`
     }
   }
 `;
+
+export const DEL_TASK = gql`
+  mutation RemoveTask($id: ID!) {
+    removeTask(id: $id) {
+      _id
+      text
+      createdBy
+      checked
+      deadline
+    }
+  }
+`;
