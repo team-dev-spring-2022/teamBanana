@@ -20,8 +20,9 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    fontSize: 18,
-    color: '#000000',
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'black',
   },
 
   signUpButton: {
@@ -29,9 +30,15 @@ const styles = StyleSheet.create({
     height: 48,
     padding: 10,
     borderRadius: 24,
-    borderWidth: 0.5,
-    borderColor: 'black',
     backgroundColor: '#FFD511',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  signUpButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF',
   },
 });
 

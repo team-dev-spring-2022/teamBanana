@@ -78,7 +78,6 @@ const CreateTasksPage = ({navigation, route}) => {
           value={text}
           placeholder="Введите текст"
         />
-
         <Text style={styles.text}>Срок</Text>
         <View style={styles.dateInputContainer}>
           <Text style={[styles.dateText, styles.text]}>

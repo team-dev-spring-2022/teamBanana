@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
 
   addButtonContainer: {
-    padding: 5,
+    padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -52,16 +52,15 @@ const styles = StyleSheet.create({
     height: 48,
     padding: 10,
     borderRadius: 24,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: 'black',
     backgroundColor: '#FFD511',
   },
 
   addButtonText: {
-    fontSize: 20,
-    color: '#000',
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
   },
 });
 

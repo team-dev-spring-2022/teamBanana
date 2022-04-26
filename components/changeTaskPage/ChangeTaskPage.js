@@ -126,7 +126,9 @@ const ChangeTaskPage = ({navigation, route}) => {
             Задача была выполнена?
           </Text>
         </View>
-        <Text style={styles.text}>Срок</Text>
+        <View style={styles.dateContainer}>
+          <Text style={styles.text}>Срок</Text>
+        </View>
         <View style={styles.dateInputContainer}>
           <Text style={[styles.dateText, styles.text]}>
             {moment(date).format('dddd, D MMMM YYYY г.')}

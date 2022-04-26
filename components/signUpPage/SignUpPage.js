@@ -105,7 +105,7 @@ const SignUpPage = ({navigation}) => {
       <TouchableOpacity
         style={[styles.signUpButton, styles.button]}
         onPress={onRegistration}>
-        <Text style={styles.text}>Зарегистрироваться</Text>
+        <Text style={styles.signUpButtonText}>Зарегистрироваться</Text>
       </TouchableOpacity>
     </View>
   );

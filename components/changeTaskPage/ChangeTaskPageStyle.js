@@ -47,6 +47,10 @@ const styles = StyleSheet.create({
     borderRadius: 14,
   },
 
+  dateContainer: {
+    marginTop: 20,
+  },
+
   dateButton: {
     backgroundColor: '#FFD511',
     width: '15%',
@@ -64,27 +68,24 @@ const styles = StyleSheet.create({
   },
 
   addButtonContainer: {
-    flex: 1,
     flexDirection: 'row',
-    padding: 5,
+    padding: 20,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
 
   addButtonText: {
-    fontSize: 20,
-    color: '#000',
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
   },
 
   addremoveButton: {
-    width: 180,
+    width: 170,
     height: 48,
-    padding: 10,
     borderRadius: 24,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: 'black',
     backgroundColor: '#FFD511',
   },
 });
