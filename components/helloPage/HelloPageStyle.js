@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 16,
+    fontWeight: '600',
     color: '#FFFFFF',
   },
 
@@ -24,9 +25,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 25,
     alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 24,
-    borderWidth: 0.5,
-    borderColor: 'black',
   },
 
   signInButton: {

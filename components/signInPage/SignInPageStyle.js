@@ -19,9 +19,23 @@ const styles = StyleSheet.create({
     borderRadius: 14,
   },
 
-  text: {fontSize: 18, color: 'black'},
+  text: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'black',
+  },
 
-  textSignUp: {fontSize: 18, textDecorationLine: 'underline', color: '#BEBEBE'},
+  textSignUp: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+  },
+
+  textSignUpPassword: {
+    fontSize: 16,
+    textDecorationLine: 'underline',
+    color: '#BEBEBE',
+  },
 
   button: {
     marginBottom: 15,
@@ -33,9 +47,9 @@ const styles = StyleSheet.create({
     height: 48,
     padding: 10,
     borderRadius: 24,
-    borderWidth: 0.5,
-    borderColor: 'black',
     backgroundColor: '#FFD511',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   signUpButton: {padding: 10},
