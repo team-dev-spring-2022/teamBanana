@@ -22,7 +22,7 @@ const ToDoListPage = ({navigation, route}) => {
 
   const [update] = useMutation(UPD_TASK, {
     onCompleted: () => {
-      console.log('add task');
+      console.log('check task');
       navigation.navigate('ToDoList', {
         email: email,
       });

@@ -1,6 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {TouchableOpacity, TextInput, View, Text} from 'react-native';
+import {
+  TouchableOpacity,
+  TextInput,
+  View,
+  Text,
+  ToastAndroid,
+} from 'react-native';
 import styles from './SignUpPageStyle';
 import {useMutation} from '@apollo/client';
 import {REG} from '../apollo/gqls/mutations';
@@ -22,22 +28,50 @@ const SignUpPage = ({navigation}) => {
 
   const validate = () => {
     if (email === '') {
+      ToastAndroid.showWithGravityAndOffset(
+        'Не введен Email',
+        ToastAndroid.SHORT,
+        ToastAndroid.TOP,
+        0,
+        160,
+      );
       console.log('Не введен Email');
       setEmailErr(true);
       return false;
     }
     setEmailErr(false);
     if (password === '') {
+      ToastAndroid.showWithGravityAndOffset(
+        'Не введен пароль',
+        ToastAndroid.SHORT,
+        ToastAndroid.TOP,
+        0,
+        160,
+      );
       console.log('Не введен пароль');
       setPassErr(true);
       return false;
     }
     if (checkpassword === '') {
+      ToastAndroid.showWithGravityAndOffset(
+        'Повторите пароль',
+        ToastAndroid.SHORT,
+        ToastAndroid.TOP,
+        0,
+        160,
+      );
       console.log('Повторите пароль');
       setPassErr(true);
       return false;
     }
     if (password !== checkpassword) {
+      ToastAndroid.showWithGravityAndOffset(
+        'Пароли не совпадают',
+        ToastAndroid.SHORT,
+        ToastAndroid.TOP,
+        0,
+        160,
+      );
       console.log('Пароли не совпадают');
       setPassErr(true);
       return false;

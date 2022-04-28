@@ -1,6 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {TouchableOpacity, TextInput, View, Text} from 'react-native';
+import {
+  TouchableOpacity,
+  TextInput,
+  View,
+  Text,
+  ToastAndroid,
+} from 'react-native';
 import styles from './SignInPageStyle';
 import {useMutation} from '@apollo/client';
 import {AUTH} from '../apollo/gqls/mutations';
@@ -15,12 +21,26 @@ const SignInPage = ({navigation}) => {
 
   const validate = () => {
     if (login === '') {
+      ToastAndroid.showWithGravityAndOffset(
+        'Не введен Email',
+        ToastAndroid.SHORT,
+        ToastAndroid.TOP,
+        0,
+        160,
+      );
       console.log('Не введен Email');
       setEmailErr(true);
       return false;
     }
     setEmailErr(false);
     if (password === '') {
+      ToastAndroid.showWithGravityAndOffset(
+        'Не введен пароль',
+        ToastAndroid.SHORT,
+        ToastAndroid.TOP,
+        0,
+        160,
+      );
       console.log('Не введен пароль');
       setPassErr(true);
       return false;
@@ -41,7 +61,14 @@ const SignInPage = ({navigation}) => {
     },
     onError: ({message}) => {
       console.log(message);
-      if (message === 'Incorrect password') {
+      if (message === 'Incorrect password' || message === 'not found user') {
+        ToastAndroid.showWithGravityAndOffset(
+          'Неправильно введено имя пользователя или пароль',
+          ToastAndroid.SHORT,
+          ToastAndroid.TOP,
+          160,
+          160,
+        );
         return null;
       }
     },
